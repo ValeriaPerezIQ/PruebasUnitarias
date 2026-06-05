@@ -1,149 +1,343 @@
-# 🧪 Pruebas Unitarias Básicas con Jest
+# Pruebas Unitarias con Jest
 
-## 📌 Descripción
+## Descripción del Proyecto
 
-Este proyecto contiene una serie de funciones desarrolladas en JavaScript junto con sus pruebas unitarias implementadas con **Jest**.
+Este proyecto implementa cinco funciones básicas en JavaScript y valida su correcto funcionamiento mediante pruebas unitarias utilizando **Jest**.
 
-El objetivo principal es practicar conceptos fundamentales de testing, validación de datos y manejo de casos límite en funciones comunes.
+El objetivo es verificar que cada función produzca los resultados esperados ante entradas válidas e inválidas.
+---
+
+## Tecnologías Utilizadas
+
+- JavaScript
+- Node.js
+- Jest
+
+
+# Funciones Implementadas y Pruebas Unitarias
 
 ---
 
-## ⚙️ Funciones implementadas
+## 1. calcularDescuento(precio, porcentaje)
 
-### 1. 💸 Calcular descuento
+### Propósito
 
-**Descripción:**  
 Calcula el precio final de un producto después de aplicar un porcentaje de descuento.
 
-**Ejemplo:**
-- Precio: $1000  
-- Descuento: 20%  
-- Resultado: $800  
+### ¿Cómo funciona?
+
+La función recibe:
+
+- Precio original del producto.
+- Porcentaje de descuento.
+
+Si el porcentaje se encuentra entre 0 y 100, calcula el descuento y devuelve el precio final.
+
+Si el porcentaje es inválido, devuelve el mensaje:
+
+```text
+EL PORCENTAJE ES INVALIDO
+```
+
+### Ejemplo
+
+```javascript
+calcularDescuento(1000,20);
+```
+
+Resultado:
+
+```text
+800
+```
+
+### Pruebas Unitarias
+
+| Caso de prueba | Resultado esperado |
+|---------------|-------------------|
+| Precio 1000, descuento 20% | 800 |
+| Precio 100, descuento 100% | 0 |
+| Precio 100, descuento 0% | 100 |
+| Precio 100, descuento 150% | EL PORCENTAJE ES INVALIDO |
+
+### Resultado esperado
+
+La función debe calcular correctamente el precio final y rechazar porcentajes fuera del rango permitido.
 
 ---
 
-### 2. 🔐 Validar contraseña
+## 2. validarPassword(password)
 
-**Descripción:**  
-Verifica si una contraseña cumple con requisitos mínimos de seguridad.
+### Propósito
 
-**Uso típico:**  
-Validación de credenciales antes de permitir acceso.
+Determina si una contraseña cumple las reglas mínimas de seguridad.
+
+### ¿Cómo funciona?
+
+La contraseña debe:
+
+- Tener al menos 8 caracteres.
+- Contener únicamente letras y números.
+
+La función devuelve:
+
+```text
+true
+```
+
+si la contraseña es válida, o
+
+```text
+false
+```
+
+si no cumple las condiciones.
+
+### Ejemplo
+
+```javascript
+validarPassword("abc12345");
+```
+
+Resultado:
+
+```text
+true
+```
+
+### Pruebas Unitarias
+
+| Caso de prueba | Resultado esperado |
+|---------------|-------------------|
+| abc12345 | true |
+| clara900 | true |
+| 129887900 | true |
+| abc | false |
+
+### Resultado esperado
+
+La función debe aceptar contraseñas válidas y rechazar aquellas con menos de 8 caracteres.
 
 ---
 
-### 3. 🌡️ Conversión Celsius a Fahrenheit
+## 3. celsiusAFahrenheit(celsius)
 
-**Descripción:**  
-Convierte una temperatura de grados Celsius a Fahrenheit.
+### Propósito
 
-**Fórmula base:**  
+Convierte temperaturas de grados Celsius a grados Fahrenheit.
+
+### ¿Cómo funciona?
+
+Utiliza la fórmula:
+
+```text
 °F = (°C × 9/5) + 32
+```
+
+### Ejemplo
+
+```javascript
+celsiusAFahrenheit(0);
+```
+
+Resultado:
+
+```text
+32
+```
+
+### Pruebas Unitarias
+
+| Caso de prueba | Resultado esperado |
+|---------------|-------------------|
+| -273.15°C | -459.67°F |
+| 15.56°C | 60.01°F |
+| 0°C | 32°F |
+
+### Resultado esperado
+
+La función debe realizar correctamente la conversión y devolver resultados con dos decimales cuando sea necesario.
 
 ---
 
-### 4. 🎟️ Mayor de edad
+## 4. esMayorEdad(edad)
 
-**Descripción:**  
-Determina si una persona tiene al menos 18 años.
+### Propósito
 
-**Uso típico:**  
-Control de acceso por edad.
+Determina si una persona es mayor de edad.
 
----
+### ¿Cómo funciona?
 
-### 5. 🪪 Generar nombre completo
+La función evalúa si la edad es mayor o igual a 18.
 
-**Descripción:**  
-Concatena nombre y apellido, validando que ambos contengan únicamente letras.
+Devuelve:
 
----
+```text
+true
+```
 
-## 🧪 Casos de prueba
+si la persona es mayor de edad.
 
-### 💸 Descuentos
+Devuelve:
 
-| Caso               | Resultado esperado              |
-|--------------------|--------------------------------|
-| 20% sobre 1000     | 800                            |
-| 100% sobre 100     | 0                              |
-| 0% sobre 100       | 100                            |
-| 150% sobre 100     | "EL PORCENTAJE ES INVALIDO"    |
+```text
+false
+```
 
----
+si es menor de edad o el valor es inválido.
 
-### 🔐 Contraseñas
+### Ejemplo
 
-| Caso       | Resultado esperado |
-|------------|-------------------|
-| abc12345   | true              |
-| clara900   | true              |
-| abc        | false             |
+```javascript
+esMayorEdad(20);
+```
 
----
+Resultado:
 
-### 🌡️ Temperaturas
+```text
+true
+```
 
-| Caso      | Resultado esperado |
-|----------|-------------------|
-| -273.15°C | -459.67°F        |
-| 15.56°C   | 60.01°F          |
-| 0°C       | 32°F             |
+### Pruebas Unitarias
 
----
+| Caso de prueba | Resultado esperado |
+|---------------|-------------------|
+| 18 años | true |
+| 120 años | true |
+| -4 años | false |
 
-### 🎟️ Mayor de edad
+### Resultado esperado
 
-| Caso     | Resultado esperado |
-|----------|-------------------|
-| 18 años  | true              |
-| 120 años | true              |
-| -4 años  | false             |
+La función debe identificar correctamente edades válidas e inválidas.
 
 ---
 
-### 🪪 Nombre completo
+## 5. generarNombreCompleto(nombre, apellido)
 
-| Caso                 | Resultado esperado |
-|----------------------|-------------------|
-| Jo March             | válido            |
-| Mariana sin apellido | undefined         |
-| 12345 López          | false             |
-| 2345@ 2345#          | false             |
+### Propósito
+
+Genera un nombre completo validando que nombre y apellido contengan únicamente letras.
+
+### ¿Cómo funciona?
+
+La función:
+
+1. Verifica que los parámetros contengan únicamente letras.
+2. Concatena nombre y apellido.
+3. Devuelve el nombre completo.
+
+Si alguno de los valores es inválido, devuelve:
+
+```text
+false
+```
+
+### Ejemplo
+
+```javascript
+generarNombreCompleto("Jo","March");
+```
+
+Resultado:
+
+```text
+Jo March
+```
+
+### Pruebas Unitarias
+
+| Caso de prueba | Resultado esperado |
+|---------------|-------------------|
+| ("Jo","March") | "Jo March" |
+| ("Mariana") | "Mariana undefined" |
+| ("12345","López") | false |
+| ("2345@","2345#") | false |
+
+### Resultado esperado
+
+La función debe construir correctamente el nombre completo y rechazar entradas inválidas.
 
 ---
 
-## 📊 Resultados de pruebas
+# Casos  Evaluados
 
-| Métrica             | Resultado  |
-|---------------------|-----------|
-| Test Suites         | 1 passed  |
-| Tests               | 18 passed |
-| Snapshots           | 0         |
-| Tiempo de ejecución | 1.409 s   |
+## Descuentos
+
+- 0% de descuento.
+- 100% de descuento.
+- Porcentajes superiores a 100%.
+
+## Contraseñas
+
+- Menos de 8 caracteres.
+- Solo números.
+- Combinación de letras y números.
+
+## Temperaturas
+
+- Cero absoluto (-273.15°C).
+- Punto de congelación del agua (0°C).
+
+## Edad
+
+- Edad mínima legal (18 años).
+- Valores negativos.
+
+## Nombres
+
+- Nombres válidos.
+- Valores numéricos.
+- Caracteres especiales.
 
 ---
 
-## ⚠️ Problemas encontrados
+#  Durante el Desarrollo
 
-### 🔄 Comparación de tipos
-Se detectaron errores por diferencias entre valores numéricos y cadenas al comparar resultados en Jest.
+## 1. Validación de porcentajes
 
-### ⚖️ Truthy / Falsy
-Fue necesario comprender el comportamiento de valores:
-- truthy
-- falsy
-- comparación estricta (===)
+Fue necesario controlar porcentajes fuera del rango permitido para evitar cálculos incorrectos.
 
-### 🧩 Casos límite
-Se evaluaron escenarios como:
-- 0% y 100% de descuento
-- temperaturas negativas extremas
-- edades inválidas
-- entradas con caracteres no válidos
+## 2. Uso de expresiones regulares
+
+Se utilizaron expresiones regulares para validar:
+
+- Contraseñas.
+- Nombres y apellidos.
+
+## 3. Precisión decimal
+
+Durante la conversión de temperaturas se observó una gran cantidad de decimales.
+
+Se utilizó:
+
+```javascript
+toFixed(2);
+```
+
+para limitar la salida a dos decimales.
+
+
+
+
+# Resultados Obtenidos
+
+Ejecución realizada con Jest:
+
+```text
+Test Suites: 1 passed, 1 total
+Tests: 18 passed, 18 total
+Snapshots: 0 total
+```
+
+Todos los casos de prueba fueron ejecutados exitosamente.
 
 ---
 
-## ✅ Conclusión
 
-Este proyecto permitió reforzar conocimientos en **pruebas unitarias con Jest**, validación de datos, manejo de errores y análisis de casos límite, logrando una suite de pruebas completamente exitosa.
+---
+
+# Conclusión
+
+La implementación de pruebas unitarias con Jest permitió verificar automáticamente el correcto funcionamiento de todas las funciones desarrolladas.
+
+Las pruebas cubren escenarios normales, entradas inválidas y casos límite.
